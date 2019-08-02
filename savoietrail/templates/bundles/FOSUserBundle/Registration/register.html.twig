@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2 class="text-center">Création de compte<img src="/images/ajouter.ico" class="icone ml-4" alt="icone"></h2>
+  {% include "@FOSUser/Registration/register_content.html.twig" %}
+{% endblock %}

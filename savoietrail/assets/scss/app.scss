@@ -1,0 +1,34 @@
+@import "~bootstrap/scss/bootstrap" ;
+
+body {
+    // background-color: rgba(44, 42, 42, 0.767);
+}
+
+.icone {
+    width: 2rem;
+}
+
+// Navbar
+
+.navbar {
+    width: 100%;
+}
+
+
+ // Leaflet
+#mapid { 
+    margin-top: 5%;
+    margin: auto;
+    height: 30rem; 
+    width: 69rem;
+}
+ 
+.geo {
+    height: 1.5rem;
+}
+
+.test {
+    background-color: rgba(44, 42, 42, 0.767);
+    border: solid, 1px;
+    border-radius:0% 0% 20% 20%;
+}

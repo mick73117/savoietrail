@@ -1,0 +1,14 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<h2 class="text-center">Compte<img src="/images/user.png" class="icone ml-5" alt="icone"/></h2>
+<div class="container mt-5">
+        <table class="table">
+          <tbody>
+            <tr class="border fos_user_user_show show">
+                <th>{{ 'profile.show.username'|trans }}: {{ user.username }}</th>
+            </tr>
+            <tr class="border fos_user_user_show show">
+                <th>{{ 'profile.show.email'|trans }}: {{ user.email }}</th>
+            </tr>
+          </tbody>
+        </table>
+</div>
