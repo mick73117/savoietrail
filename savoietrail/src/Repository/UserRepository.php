@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Query;
+
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +20,34 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    public function findUsers() {
+        $qb = $this->createQueryBuilder('u')
+              ->getQuery();
+  
+        return $qb;
+      }
+  
+      public function findUserById(int $id) {
+        $qb = $this->createQueryBuilder('u')
+              ->andWhere('u.id = :id')
+              ->setParameter('id', $id)
+              ->getQuery()
+              ->getOneOrNullResult();
+  
+        return $qb;
+      }
+
+      public function contains(User $user) {
+        $qb = $this->createQueryBuilder('u')
+        ->select('count(u.user)')
+        ->where('u.user = :user')
+        ->setParameter('user', $user);
+  
+        $result = $qb->getQuery()->getOneOrNullResult(Query::HYDRATE_SINGLE_SCALAR);
+  
+        return $result > 0;
+      }
 
     // /**
     //  * @return User[] Returns an array of User objects

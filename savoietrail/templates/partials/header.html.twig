@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg">
     <ul class="nav nav-pills ">
       <li class="nav-item">
-        <a class="navbar-brand" href="{{ path('home') }}">Savoie Trail</a>
+        <a class="navbar-brand" onclick=data() href="{{ path('home') }}">Savoie Trail</a>
       </li>
       <li class="nav-item">
         <a class="navbar-brand" href="{{ path('trails') }}">Trails</a>
@@ -14,13 +14,30 @@
       <li class="nav-item">
         <a href="{{ path('add_trail') }}" class="navbar-brand text-success">Ajouter Trail</a>
       </li>
-       
+      {% if is_granted('ROLE_ADMIN') %}
+      <li class="nav-item">
+        <a href="{{ path('adminutilisateur') }}" class="navbar-brand text-success">Liste user</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ path('admintraillist') }}" class="navbar-brand text-success">Liste trail</a>
+      </li>
+      {% endif %}
       {% elseif not app.user %}
       <li class="nav-item">
           <a class="navbar-brand" href="{{ path('fos_user_security_login') }}">Ajouter Trail</a>
         </li>
-      <li class="nav-item">
-          <a class="nav-link login" href="{{ path('fos_user_security_login') }}">S'identifier</a>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Connexion<img src="/images/user.png" class="icone ml-2" alt="icone"/></a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ path('fos_user_security_login') }}">S'identifier<img src="/images/user.png" class="icone ml-2" alt="icone"/></a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ path('fos_user_registration_register') }}">Créer compte<img src="/images/ajouter.ico" class="icone ml-2" alt="icone"/></a>
+          </div>
       </li>
       {% else %} 
       {% endif %}
@@ -39,33 +56,9 @@
                   <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
               </div>
           </li>
-        <div class="container">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#top" role="tab" aria-controls="top" aria-selected="true">▲</a>
-                  </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="home-tab" data-toggle="tab" href="#favoris" role="tab" aria-controls="favoris" aria-selected="true">Favoris</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#trails" role="tab" aria-controls="trails" aria-selected="false">Mes randonnées</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="contact-tab" data-toggle="tab" href="#compte" role="tab" aria-controls="compte aria-selected="false">Compte</a>
-                </li>
-              </ul>
-              <div class="tab-content test" id="myTabContent">
-                <div class="tab-pane fade show active" id="top" role="tabpanel" aria-labelledby="contact-tab"></div>
-                <div class="tab-pane fade" id="favoris" role="tabpanel" aria-labelledby="favoris-tab">...</div>
-                <div class="tab-pane fade" id="trails" role="tabpanel" aria-labelledby="trails-tab">...</div>
-                <div class="tab-pane fade" id="compte" role="tabpanel" aria-labelledby="compte-tab">...</div>
-
-              </div>
-        </div>
- 
-        
-    </nav>
-  </div>
+  </ul>
+  </nav>
+</div>
   {% endif %}
 
    

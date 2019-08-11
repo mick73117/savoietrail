@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}user{% endblock %}
+
+{% block body %}
+<h2 class=" text-center">Gestion Utilisateur<img src="/images/list.jpg" class="icone ml-5" alt="icone"></h2>
+
+  <div class="container mb-4 mr-2">
+      <div class="row">
+        <a class="btn btn-outline-success col" href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
+        <form class="form-inline my-2 my-lg-0 col">
+          <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+        </form>
+      </div>
+    </div>
+
+  <div class="table-responsive">
+<table class="listingProject table-striped m-auto">
+    <thead class="thead">
+      <tr class="border">
+        <th class="text-center">Nom</th>
+        <th class="text-center">Nom réel</th>
+        <th class="text-center">Mail</th>
+        <th class="text-center">Mail réel</th>
+        <th class="text-center">Activé</th>
+        <th class="text-center">Dernière connexion</th>
+        <th class="text-center">Jeton d'activation</th>
+        <th class="text-center">Statut</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for user in users %}
+        <tr class="border">
+          <td class="text-center">{{ user.username }}</td>
+          <td class="text-center">{{ user.usernameCanonical }}</td>
+          <td class="text-center">{{ user.email }}</td>
+          <td class="text-center">{{ user.emailCanonical }}</td>
+          <td class="text-center">
+            <label class="center">
+              {% if user.enabled %}
+              <div class="switch_box box_1">
+                <input type="checkbox" class="switch_1" name="{{ user.username }}" value="{{ user.id }}" checked="checked"></input>
+              </div>
+              {% else %}
+              <div class="switch_box box_1">
+                <input type="checkbox" class="switch_1" name="{{ user.username }}" value="{{ user.id }}"></input>
+              </div>
+              {% endif %}
+            </label>
+          </td>
+          <td class="text-center">{{ user.lastLogin|date() }}</td>
+
+          <td class="text-center">
+            {% if user.confirmationToken == NULL %}
+              NULL
+            {% else %}
+              {{ user.confirmationToken }}
+            {% endif %}
+          </td>
+
+          <td class="text-center">
+            {{ user.roles.0 }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+  <script type="text/javascript">
+    console.log(window.location.protocol);
+    console.log(window.location.host);
+    console.log(window.location.pathname);
+    $("input[type='checkbox']").change(function() {
+      let location = window.location.protocol + "//" + window.location.host + window.location.pathname + "/";
+      console.log($(this).val());
+      if($(this).is(':checked')) {
+        const value = 1;
+        $.ajax({
+            type: "POST",
+            url:  location + $(this).val() + "/update",
+            data: {"etat": value},
+            success: function(msg) {
+              console.log(msg);
+            }
+        })
+      } else {
+        const value = 0;
+        $.ajax({
+            type: "POST",
+            url:  location + $(this).val() + "/update",
+            data: {"etat": value},
+            success: function(msg) {
+              console.log(msg);
+            }
+        })
+      }
+    });
+  </script>
+   
+{% endblock %}

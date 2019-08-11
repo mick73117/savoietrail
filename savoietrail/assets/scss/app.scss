@@ -14,6 +14,10 @@ body {
     width: 100%;
 }
 
+.dropdown-toggle {
+	margin-left: 13rem;
+}
+
 
  // Leaflet
 #mapid { 
@@ -21,6 +25,13 @@ body {
     margin: auto;
     height: 30rem; 
     width: 69rem;
+}
+
+#mapidinfo { 
+    margin-top: 75%;
+    // margin: auto;
+    height: 20rem; 
+    width: 49rem;
 }
  
 .geo {
@@ -30,5 +41,89 @@ body {
 .test {
     background-color: rgba(44, 42, 42, 0.767);
     border: solid, 1px;
-    border-radius:0% 0% 20% 20%;
+    border-radius:0% 0% 5% 5%;
 }
+
+
+//checkbox_Users
+.switch_box{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+}
+
+/* Switch 1 Specific Styles Start */
+input[type="checkbox"].switch_1{
+	font-size: 30px;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+	width: 1.5em;
+	height: 0.5em;
+	background: rgb(190, 4, 4);
+	border-radius: 3em;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+  }
+  
+  input[type="checkbox"].switch_1:checked{
+	background: #05e029cc;
+  }
+  
+  input[type="checkbox"].switch_1:after{
+	position: absolute;
+	content: "";
+	width: 0.5em;
+	height: 0.5em;
+	border-radius: 50%;
+	background: #fff;
+	-webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+	        box-shadow: 0 0 .25em rgba(0,0,0,.3);
+	-webkit-transform: scale(.7);
+	        transform: scale(.7);
+	left: 0;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+  }
+  
+  input[type="checkbox"].switch_1:checked:after{
+	left: calc(100% - 0.5em);
+  }
+
+
+  .custom-file-input ~ .custom-file-label:lang(fr)::after {
+	content: "Choisir...";
+  }
+  .custom-file-input ~ .custom-file-label:lang(es)::after {
+	content: "Elegir...`";
+  }
+
+  // trails
+  .trails {
+	display: grid;
+	grid-template-columns: repeat(4, 3fr);
+	grid-gap: 10px;
+	// grid-auto-rows: minmax(100px, auto);
+  }
+
+  .alltrails {
+	  display: inline-block;
+  }
+
+
+  .formTrail {
+	margin-left: 30%;
+	margin-right: 30%;
+  }

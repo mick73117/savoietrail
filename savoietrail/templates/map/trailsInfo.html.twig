@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="container">
+
+<div class="card">
+    <div class="row">
+        <div class="col-3">
+                <img class="card-img-top" src="{{ trails.image }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ trails.titre }}</h5>
+                  <ul>
+                      <li>
+                          <p>Niveau : {{ trails.niveau }}</p>
+                      </li>
+                      <li>
+                          <p>Denivelé : {{ trails.denivele }}</p>
+                      </li>
+                      <li>
+                          <p>Altitude de départ : {{ trails.altitudededepart }}</p>
+                      </li>
+                      <li>
+                          <p>Altitude d'arrivée : {{ trails.altitudedarrivee }}</p>
+                      </li>
+                      <li>
+                          <p>Temps à la montée : {{ trails.tempsalamontee }}</p>
+                      </li>
+                      <li>
+                          <p>Temps à la descente : {{ trails.tempsaladescente }}</p>
+                      </li>
+                      <li>
+                          <p>Temps total : {{ trails.tempstotal }}</p>
+                      </li>
+                      <li>
+                          <p>Description : {{ trails.description }}</p>
+                      </li>
+                      <li>
+                          <p>Date : {{ trails.date|date('Ym-d')}}</p>
+                      </li>
+                      <li>
+                          <p>Album photo : </p><img src="{{ trails.album}}">
+                      </li>
+                  </ul>
+                </div>
+          </div>
+          <div class="col-6">
+                <div id="mapidinfo">
+                </div>
+                    <div class="container">
+                       <script>
+                            var mymap = L.map('mapidinfo').setView([45.589175, 5.911509], 8);   
+                            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
+                            { attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a> ', maxZoom: 18, id: 'mapbox.streets', accessToken: 'pk.eyJ1IjoiZXZlLWFubmUiLCJhIjoiY2p1ZHVpOTMzMHN2bzQzcGQ0eHZrOHRncCJ9.EdHJjpp-Wo5KimYiNPyjaA' }).addTo(mymap);
+
+                            // <span var gpx="{{ trails.gpx }}"></span>
+                             var gpx = "{{ trails.gpx }}"; // URL to your GPX file or the GPX itself
+                            new L.GPX(gpx, {async: true}).on('loaded', function(e) {
+                            mymap.fitBounds(e.target.getBounds());
+                            }).addTo(mymap);
+
+                        </script>
+                    </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

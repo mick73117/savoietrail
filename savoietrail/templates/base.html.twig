@@ -3,13 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welgffcome!{% endblock %}</title>
-        
-        <!--  Load Leaflet -->
-        {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script> #}
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
-  
+         <!--  Load Leaflet -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
+        <!--Extension cluster-->
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+        <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+        <script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js'></script>
 
         {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -23,15 +25,19 @@
             {% endblock %}
         </header>
 
-        <main>{% block body %}{% endblock %}</main>
+        <main>{% block body %}
+                {% include "partials/navtabs.html.twig" %}
+            {% endblock %}</main>
 
         <footer>
             {% block footer %}
                 {% include "partials/footer.html.twig" %}
             {% endblock %}
         </footer>
-        <a class="btn btn-outline-success col" href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
 
+
+    {{ encore_entry_script_tags ( 'app' ) }}
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
             <script src="/assets/geo.js"></script>

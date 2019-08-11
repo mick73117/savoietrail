@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "use strict";
    
     var button = document.querySelector("button.geolocation");
-    button.addEventListener("click", function (event) {
+    button.addEventListener("click", function () {
         currentLocation();
     });
   });
@@ -58,3 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
              alert("La géolocalisation n'est pas supportée par ce navigateur.");
          }
      }
+
+
+
+
+     
+
+     

@@ -3,47 +3,58 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<div class="row">
-        <div class="col-sm-3">
-          <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="trails">
+{% for trail in trails %}
+<div class="container alltrails">
+      <div class="card">
+          <td class="text-center">
+              <label class="center">
+                <div class="switch_box box_1">
+                  <input type="checkbox" class="switch_1" name="test" value="1" checked="checked">
                 </div>
+              </label>
+            </td>
+              <img class="card-img-top" src="{{ trail.image}}" alt="Card image cap">
+              <div class="card-body">
+              <h5 class="card-title">{{ trail.titre }}</h5>
+            <p class="card-text">{{ trail.description}}</p>
+            <a href="{{ path('trails_info', {'id': trail.id})}}" class="btn btn-primary">En savoir plus</a>
           </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-          </div>
-        </div>
-        <div class="col-sm-3">
-                <div class="card">
-                      <img class="card-img-top" src="..." alt="Card image cap">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                </div>
-
-              </div>
-              <div class="col-sm-3">
-                    <div class="card">
-                          <img class="card-img-top" src="..." alt="Card image cap">
-                          <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                          </div>
-                    </div>
-                  </div>
       </div>
+</div>
+{% endfor %}
+</div>
 {% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript">
+    console.log(window.location.protocol);
+    console.log(window.location.host);
+    console.log(window.location.pathname);
+    $("input[type='checkbox']").change(function() {
+      let location = window.location.protocol + "//" + window.location.host + window.location.pathname + "/";
+      console.log($(this).val());
+      if($(this).is(':checked')) {
+        const value = 1;
+        $.ajax({
+            type: "POST",
+            url:  location + $(this).val() + "/update",
+            data: {"etat": value},
+            success: function(msg) {
+              console.log(msg);
+            }
+        })
+      } else {
+        const value = 0;
+        $.ajax({
+            type: "POST",
+            url:  location + $(this).val() + "/update",
+            data: {"etat": value},
+            success: function(msg) {
+              console.log(msg);
+            }
+        })
+      }
+    });
+  </script>
+  {% endblock %}
