@@ -18,8 +18,8 @@ class TrailsController extends AbstractController
     public function index()
     {
         $repo = $this->getDoctrine()->getRepository(Trails::class);
-
         $trails = $repo->findAll();
+
         return $this->render('map/trails.html.twig', [
             'controller_name' => 'TrailController',
             'trails' => $trails
@@ -40,6 +40,7 @@ class TrailsController extends AbstractController
         ]);
         
     }
+
 
 
 

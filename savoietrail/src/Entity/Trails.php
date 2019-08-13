@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\PhotoAlbum;
 use App\Entity\TrailsUser;
 use App\Entity\TrailsComments;
 use Doctrine\ORM\Mapping as ORM;
@@ -98,7 +99,7 @@ class Trails
     private $enabled;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\PhotoAlbum", inversedBy="trails", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\PhotoAlbum", mappedBy="trails", cascade={"persist", "remove"})
      */
     private $album;
 
@@ -113,6 +114,7 @@ class Trails
         $this->trailsComments = new ArrayCollection();
         $this->setDate(new \DateTime());
         $this->setenabled(1);
+        $this->album = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,6 +254,30 @@ class Trails
         return $this;
     }
 
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(?bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getGpx(): ?string
+    {
+        return $this->gpx;
+    }
+
+    public function setGpx(?string $gpx): self
+    {
+        $this->gpx = $gpx;
+
+        return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -326,40 +352,37 @@ class Trails
         return $this;
     }
 
-
-    public function getEnabled(): ?bool
-    {
-        return $this->enabled;
-    }
-
-    public function setEnabled(bool $enabled): self
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    public function getAlbum(): ?PhotoAlbum
+    /**
+     * @return Collection|PhotoAlbum[]
+     */
+    public function getAlbum(): Collection
     {
         return $this->album;
     }
 
-    public function setAlbum(?PhotoAlbum $album): self
+    public function addAlbum(PhotoAlbum $album): self
     {
-        $this->album = $album;
+        if (!$this->album->contains($album)) {
+            $this->album[] = $album;
+            $album->setTrails($this);
+        }
 
         return $this;
     }
 
-    public function getGpx(): ?string
+    public function removeAlbum(PhotoAlbum $album): self
     {
-        return $this->gpx;
-    }
-
-    public function setGpx(?string $gpx): self
-    {
-        $this->gpx = $gpx;
+        if ($this->album->contains($album)) {
+            $this->album->removeElement($album);
+            // set the owning side to null (unless already changed)
+            if ($album->getTrails() === $this) {
+                $album->setTrails(null);
+            }
+        }
 
         return $this;
     }
+
+ 
+   
 }

@@ -12,6 +12,8 @@
         <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
         <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
         <script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js'></script>
+        <!--Extension animate.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
         {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -22,11 +24,12 @@
         <header>
             {% block header %}     
                 {% include "partials/header.html.twig" %}
+                {% include "partials/navtabs.html.twig" %}
+
             {% endblock %}
         </header>
-
         <main>{% block body %}
-                {% include "partials/navtabs.html.twig" %}
+                {# {% include "partials/navtabs.html.twig" %} #}
             {% endblock %}</main>
 
         <footer>

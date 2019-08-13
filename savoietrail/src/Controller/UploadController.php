@@ -41,46 +41,55 @@ class UploadController extends AbstractController
             // $em->persist($gpx);
             $em->flush();
 
-             return $this->redirectToRoute('mes_trails');
+             return $this->redirectToRoute('add_album', ['id' => $trail->getId()]);
         }
 
         return $this->render('import/addTrail.html.twig', [
             'controller_name' => 'UploadController',
             'form' => $form->createView(),
         ]);
-
-    }
-
-    /**
-     * @Route("/add_album", name="add_album")
-     */
-   public function albumForm(Request $request , ObjectManager $em)
-   {
-       $album = new PhotoAlbum();
-                   
-       $form = $this->createForm(AlbumType::class, $album);
-       $form->handleRequest($request);
-
-       if($form->isSubmitted() && $form->isValid()) {
-            //if form Image is submitted upload file, concatenation path.random name.extension file, and move in /public/uplaods (target config in service.yaml)
-            $file = $form->get('album')->getData();
-            $fileName = '/album/'.uniqid().'.'.$file->guessExtension();
-            $file->move($this->getParameter('upload_album'), $fileName);
-            $album->setAlbum($fileName);
+        }
 
 
-           $em = $this->getDoctrine()->getManager();
-           $em->persist($album);
-           $em->flush();
+    // /**
+    //  * @Route("add_trail_album/{id}", name="add_album")
+    //  */
+    // public function albumForm(Request $request , ObjectManager $em, int $id)
+    // {
+    //     $album = new PhotoAlbum();
+                 
+    //     $repo = $this->getDoctrine()->getRepository(Trails::class);
+ 
+    //     $form = $this->createForm(AlbumType::class, $album);
+    //     $form->handleRequest($request);
+    //     $trail = $repo->findTrailById($id);
+    //     if($form->isSubmitted() && $form->isValid()) {
+    //          //if form Image is submitted upload file, concatenation path.random name.extension file, and move in /public/uplaods (target config in service.yaml)
+    //          $file = $form->get('album')->getData();
+    //          $fileName = '/album/'.uniqid().'.'.$file->guessExtension();
+    //          $file->move($this->getParameter('upload_album'), $fileName);
+    //          $album->setAlbum($fileName);
+ 
+    //          $album->setTrails($trail);
+ 
+    //          $em = $this->getDoctrine()->getManager();
+    //          $em->persist($album);
+    //          $em->flush();
+ 
+    //          return $this->redirectToRoute('mes_trails');
+    //     }
+ 
+    //     return $this->render('import/addAlbum.html.twig', [
+    //         'controller_name' => 'UploadController',
+    //         'form' => $form->createView(),
+    //         'album' => $album,
+    //     ]);
+ 
+    // }
 
-           return $this->redirectToRoute('mes_trails');
-       }
 
-       return $this->render('import/addTrail.html.twig', [
-           'controller_name' => 'UploadController',
-           'form' => $form->createView(),
-       ]);
+    
 
-   }
+
     
 }

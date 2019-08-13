@@ -27,7 +27,7 @@ class Forum
     private $date;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="forum", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="post", cascade={"persist", "remove"})
      */
     private $user;
 
@@ -71,4 +71,7 @@ class Forum
 
         return $this;
     }
+
+   
+   
 }

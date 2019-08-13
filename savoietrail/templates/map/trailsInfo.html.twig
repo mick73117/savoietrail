@@ -39,9 +39,11 @@
                       <li>
                           <p>Date : {{ trails.date|date('Ym-d')}}</p>
                       </li>
+                      {% for album in trails %}
                       <li>
                           <p>Album photo : </p><img src="{{ trails.album}}">
                       </li>
+                      {% endfor %}
                   </ul>
                 </div>
           </div>

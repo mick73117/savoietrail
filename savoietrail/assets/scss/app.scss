@@ -113,17 +113,37 @@ input[type="checkbox"].switch_1{
   // trails
   .trails {
 	display: grid;
-	grid-template-columns: repeat(4, 3fr);
-	grid-gap: 10px;
+	grid-template-columns: repeat(5, 3fr);
+	grid-gap: 1%;
 	// grid-auto-rows: minmax(100px, auto);
   }
 
   .alltrails {
 	  display: inline-block;
+	//   width: 20rem;
+	//   height: 20rem;
   }
 
+//   .alltrails:hover {
+// 	  width: 30rem;
+// 	  height: 30rem;
+//   }
 
   .formTrail {
 	margin-left: 30%;
 	margin-right: 30%;
   }
+
+
+  //login
+  .cardLogin {
+	border-style: solid;
+	border-radius:1%;
+	margin-top:5%;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding: 1%;
+	border-color: #93b38bd6;
+  }
+
+ 

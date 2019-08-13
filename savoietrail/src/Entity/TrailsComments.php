@@ -27,12 +27,12 @@ class TrailsComments
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Trails", inversedBy="trailsComments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trails", inversedBy="trailsComments", cascade={"persist", "remove"})
      */
     private $trails;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="trailsComments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="trailsComments", cascade={"persist", "remove"})
      */
     private $user;
 

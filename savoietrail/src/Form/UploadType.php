@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 
@@ -72,12 +73,17 @@ class UploadType extends AbstractType
                 ]
               ])   
             ->add('description')
-            ->add('album', AlbumType::class, [
-                'label' => 'Album photo',
-                'attr' => [
-                'multiple' => 'multiple'
-                ]
-            ])
+            // ->add('album', AlbumType::class, [
+            //     'label' => 'Album photo',
+            //     'attr' => [
+            //     'multiple' => 'multiple'
+            //     ]
+            // ])
+            
+            ->add ('album' , CollectionType::class, [
+                'entry_type' => AlbumType::class ,
+                'allow_add' => true,
+                ])
             ->add('gpx', FileType::class)
             ->add('envoyer', SubmitType::class)
         ;
@@ -87,6 +93,7 @@ class UploadType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        
         $resolver->setDefaults([
             'data_class' => Trails::class,
         ]);

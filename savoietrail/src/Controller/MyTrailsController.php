@@ -15,15 +15,20 @@ class MyTrailsController extends AbstractController
     /**
      * @Route("/mes_trails", name="mes_trails")
      */
-    public function test()
+    // public function test()
+    // {
+    //     $repo = $this->getDoctrine()->getRepository(Trails::class);
+    //     $trail = $repo->findAll();
+    //     return $this->render('partials/navtabs.html.twig', [
+    //         'trails' => $trail,
+    //     ]);
+    // }
+    public function index()
     {
-        $repo = $this->getDoctrine()->getRepository(Trails::class);
-        $trail = $repo->findAll();
         return $this->render('partials/navtabs.html.twig', [
-            'trails' => $trail,
+            'controller_name' => 'MyTrailsController',
         ]);
     }
-
 
     // /**
     //  * @Route("/trails", name="trails")

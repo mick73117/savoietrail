@@ -23,18 +23,13 @@ class PhotoAlbum
 
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Trails", mappedBy="album", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trails", inversedBy="album", cascade={"persist", "remove"})
      */
     private $trails;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function __toString()
-    {
-        return $this->album;
     }
 
     public function getAlbum(): ?string
@@ -49,7 +44,6 @@ class PhotoAlbum
         return $this;
     }
 
-
     public function getTrails(): ?Trails
     {
         return $this->trails;
@@ -59,14 +53,10 @@ class PhotoAlbum
     {
         $this->trails = $trails;
 
-        // set (or unset) the owning side of the relation if necessary
-        $newAlbum = $trails === null ? null : $this;
-        if ($newAlbum !== $trails->getAlbum()) {
-            $trails->setAlbum($newAlbum);
-        }
-
         return $this;
-        
     }
+
+   
+   
     
 }
