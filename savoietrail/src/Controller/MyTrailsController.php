@@ -12,9 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
   
 class MyTrailsController extends AbstractController
 {
-    /**
-     * @Route("/mes_trails", name="mes_trails")
-     */
+    // /**
+    //  * @Route("/mes_trails", name="mes_trails")
+    //  */
     // public function test()
     // {
     //     $repo = $this->getDoctrine()->getRepository(Trails::class);
@@ -23,29 +23,29 @@ class MyTrailsController extends AbstractController
     //         'trails' => $trail,
     //     ]);
     // }
+    // public function index()
+    // {
+    //     return $this->render('partials/navtabs.html.twig', [
+    //         'controller_name' => 'MyTrailsController',
+    //     ]);
+    // }
+
+    /**
+     * @Route("/", name="mes_trails")
+     */
     public function index()
     {
+        $repo = $this->getDoctrine()->getRepository(Trails::class);
+        // $user = $this->getUser();
+        $trails = $repo->findAll();
         return $this->render('partials/navtabs.html.twig', [
             'controller_name' => 'MyTrailsController',
+            'trails' => $trails,
         ]);
     }
 
     // /**
-    //  * @Route("/trails", name="trails")
-    //  */
-    // public function index()
-    // {
-    //     $repo = $this->getDoctrine()->getRepository(Trails::class);
-
-    //     $trails = $repo->findAll();
-    //     return $this->render('partials/navtabs.html.twig', [
-    //         'controller_name' => 'MyTrailController',
-    //         'trails' => $trails
-    //     ]);
-    // }
-
-    // /**
-    //  * @Route("/trails_info/{id}/", name="trails_info")
+    //  * @Route("/mes_trails_info/{id}/", name="mes_trails_info")
     //  */
     // public function somewhere($id)
     // {

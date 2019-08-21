@@ -24,12 +24,16 @@
         <header>
             {% block header %}     
                 {% include "partials/header.html.twig" %}
-                {% include "partials/navtabs.html.twig" %}
-
+                {# {% include "partials/navtabs.html.twig" %} #}
+                <div>
+                        {{ render(controller(
+                            'App\\Controller\\MyTrailsController::index'
+                        )) }}
+                    </div>
             {% endblock %}
         </header>
         <main>{% block body %}
-                {# {% include "partials/navtabs.html.twig" %} #}
+ 
             {% endblock %}</main>
 
         <footer>

@@ -25,7 +25,7 @@ class TrailsController extends AbstractController
             'trails' => $trails
         ]);
     }
-
+    
     /**
      * @Route("/trails_info/{id}/", name="trails_info")
      */

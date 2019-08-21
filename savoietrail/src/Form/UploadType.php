@@ -73,13 +73,7 @@ class UploadType extends AbstractType
                 ]
               ])   
             ->add('description')
-            // ->add('album', AlbumType::class, [
-            //     'label' => 'Album photo',
-            //     'attr' => [
-            //     'multiple' => 'multiple'
-            //     ]
-            // ])
-            
+         
             ->add ('album' , CollectionType::class, [
                 'entry_type' => AlbumType::class ,
                 'allow_add' => true,

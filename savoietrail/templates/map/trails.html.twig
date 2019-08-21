@@ -5,8 +5,9 @@
 {% block body %}
 <div class="trails">
 {% for trail in trails %}
-<div class="container alltrails">
-      <div class="card">
+<div class="container">
+    <a href="{{ path('trails_info', {'id': trail.id})}}">
+      <div class="card alltrails">
           <td class="text-center">
               <label class="center">
                 <div class="switch_box box_1">
@@ -14,13 +15,16 @@
                 </div>
               </label>
             </td>
-              <img class="card-img-top" src="{{ trail.image}}" alt="Card image cap">
+            <span id="link">
+              <img id="card-img-top" src="{{ trail.image}}" alt="Card image cap">
               <div class="card-body">
               <h5 class="card-title">{{ trail.titre }}</h5>
             <p class="card-text">{{ trail.description}}</p>
-            <a href="{{ path('trails_info', {'id': trail.id})}}" class="btn btn-primary">En savoir plus</a>
+            {# <a href="{{ path('trails_info', {'id': trail.id})}}" class="btn btn-primary">En savoir plus</a> #}
+          </span>
           </div>
       </div>
+    </a>
 </div>
 {% endfor %}
 </div>

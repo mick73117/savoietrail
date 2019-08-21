@@ -5,26 +5,20 @@
 {% block body %}
 <div class="formTrail">
                 {{ form_start(form) }}
-                {{ form_row(form.titre) }}
-                {{ form_row(form.image, {
+                 {{ form_row(form.titre) }}
+                 {{ form_row(form.image, {
                     attr: {
                         'placeholder': 'Choisir une image',
                     }
                 }) }}
-                {{ form_row(form.niveau) }}
+               {# {{ form_row(form.niveau) }}
                 {{ form_row(form.denivele) }}
                 {{ form_row(form.altitude_de_depart) }}
                 {{ form_row(form.altitudedarrivee) }}
                 {{ form_row(form.tempsalamontee) }}
                 {{ form_row(form.tempsaladescente) }}
                 {{ form_row(form.tempstotal) }}
-                {{ form_row(form.description) }}
-                {# {{ form_widget ( form.tags.vars.prototype.album )| e }}  #}
-                {# {{ form_row(form.album, {
-                    attr: {
-                        'placeholder' : 'Choisir plusieur images',
-                    }
-                }) }} #}
+                {{ form_row(form.description) }}  #}
                 {{ form_row(form.gpx, {
                     attr: {
                         'placeholder' : 'Choisir fichier GPX',
@@ -38,56 +32,9 @@
 
 {% block javascripts %}
 <script>
-    $('.custom-file-input').on('change', function(event) {
-        var inputFile = event.currentTarget;
-        $(inputFile).parent()
-            .find('.custom-file-label')
-            .html(inputFile.files[0].name);
-    });
-
-
-    function addForm ( $collectionHolder , $newLinkLi ) {
-    // Get the data-prototype explained earlier
-    var prototype = $collectionHolder . data ( 'prototype' );
-
-    // get the new index
-    var index = $collectionHolder . data ( 'album' );
-
-    var newForm = prototype ;
-    // You need this only if you didn't set 'label' => false in your tags field in TaskType
-    // Replace '__name__label__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    // newForm = newForm.replace(/__name__label__/g, index);
-
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    newForm = newForm . replace ( /__name__/g , index );
-
-    // increase the index with one for the next item
-    $collectionHolder . data ( 'album' , index + 1 );
-
-    // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $ ( '<li></li>' ). append ( newForm );
-    $newLinkLi . before ( $newFormLi );
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     let collectionHolder;
-  let addAlbumButton = $('<button type="button" class="btn btn-success font-weight-bold">Ajouter photo</button>');
+  let addAlbumButton = $('<button type="button" class="btn btn-success font-weight-bold">Ajouter photo d\'album</button>');
   let newLinkLi = $('<div class="add_album"></div>').append(addAlbumButton);
 
   jQuery(document).ready(function () {

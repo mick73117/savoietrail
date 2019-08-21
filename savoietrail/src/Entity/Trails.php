@@ -383,6 +383,11 @@ class Trails
         return $this;
     }
 
- 
+ public function setTrails(?Trails $trails): self
+    {
+        $this->trails = $trails;
+
+        return $this;
+    }
    
 }
