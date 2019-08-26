@@ -18,12 +18,8 @@ class AlbumType extends AbstractType
             ->add('album', FileType::class, [
                 'attr' => [
                   'placeholder' => 'Choose File',
-                  'label' => 'Photo',
                 ]
               ])
-       
-      
-
         ;
     }
 

@@ -6,21 +6,31 @@
 <div class="trails">
 {% for trail in trails %}
 <div class="container">
+    {# <div class="switch_box box_1">
+        <input type="checkbox" class="switch_1" name="test" value="1" checked="checked">
+      </div> #}
+      {# {% if trailsUser.enabled %}
+      <div class="switch_box box_1">
+        <input type="checkbox" class="switch_1" name="{{ trail.titre }}" value="{{ trail.id }}" checked="checked"></input>
+      </div>
+      {% else %}
+      <div class="switch_box box_1">
+        <input type="checkbox" class="switch_1" name="{{ trail.titre }}" value="{{ trail.id }}"></input>
+      </div>
+      {% endif %} #}
     <a href="{{ path('trails_info', {'id': trail.id})}}">
       <div class="card alltrails">
           <td class="text-center">
               <label class="center">
-                <div class="switch_box box_1">
-                  <input type="checkbox" class="switch_1" name="test" value="1" checked="checked">
-                </div>
+
               </label>
             </td>
             <span id="link">
               <img id="card-img-top" src="{{ trail.image}}" alt="Card image cap">
               <div class="card-body">
               <h5 class="card-title">{{ trail.titre }}</h5>
-            <p class="card-text">{{ trail.description}}</p>
-            {# <a href="{{ path('trails_info', {'id': trail.id})}}" class="btn btn-primary">En savoir plus</a> #}
+            {# <p class="card-text">{{ trail.description}}</p> #}
+            {# <a href="{{ path('trails_info', {'id': trail.id})}}" class="btn btn-primary">Ajouter aux Favoris</a> #}
           </span>
           </div>
       </div>

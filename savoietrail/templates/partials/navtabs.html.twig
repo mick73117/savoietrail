@@ -20,8 +20,9 @@
             <div class="tab-pane fade show active" id="top" role="tabpanel" aria-labelledby="contact-tab"><img src="/images/bann.png"></div>
             <div class="tab-pane fade" id="favoris" role="tabpanel" aria-labelledby="favoris-tab">...</div>
             <div class="tab-pane fade" id="trails" role="tabpanel" aria-labelledby="trails-tab">
-              <div class="trails">
+              <div class="mytrails">
                 {% for trail in trails %}
+                <a href="{{ path('mes_trails_info', {'id': trail.id})}}">
                 <div class="container alltrails">
                       <div class="card">
                               <img class="card-img-top" src="{{ trail.image}}" alt="Card image cap">
@@ -31,6 +32,7 @@
                           </div>
                       </div>
                 </div>
+                </a>
                 {% endfor %}
               </div>
               </div>

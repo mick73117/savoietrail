@@ -17,12 +17,13 @@ class TrailsController extends AbstractController
      */
     public function index()
     {
+;
         $repo = $this->getDoctrine()->getRepository(Trails::class);
         $trails = $repo->findAll();
 
         return $this->render('map/trails.html.twig', [
             'controller_name' => 'TrailController',
-            'trails' => $trails
+            'trails' => $trails,
         ]);
     }
     
@@ -31,12 +32,15 @@ class TrailsController extends AbstractController
      */
     public function somewhere($id)
     {
+        // $entityAlbum = $this->getDoctrine()->getRepository(PhotoAlbum::class);
+        // $albums = $entityAlbum->findAll();
         $repo = $this->getDoctrine()->getRepository(Trails::class);
         $trails = $repo->findTrailById($id);
         // $trails = $repo->findAll();
         return $this->render('map/trailsinfo.html.twig', [
             'controller_name' => 'TrailController',
             'trails' => $trails,
+            // 'albums' => $albums,
         ]);
         
     }
@@ -51,14 +55,16 @@ class TrailsController extends AbstractController
     //  */
     // public function trailList()
     // {
-    //     $repo = $this->getDoctrine()->getRepository(Trails::class, User::class);
+    //     $user = $this->getUser();
+    //     $repo = $this->getDoctrine()->getRepository(Trails::class);
     //     // $favorite = $repo->findAll();
-    //     $favorite = $repo->findTrailById($id);
-    //     $favorite = $repo->findUserById($id);
-    //     return $this->render('admin/trails.html.twig', [
+    //     // $favorite = $repo->findTrailBy(["user" => $user]);
+    //     $favorite = $repo->findBy(["user" => $user]);
+    //     return $this->render('map/trails.html.twig', [
     //         'controller_name' => 'TrailsController',
     //         'favori' => $favorite
     //     ]);
+ 
     // }
 
 

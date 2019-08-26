@@ -8,6 +8,7 @@ parameters:
     upload_gpx: '%kernel.project_dir%/public/gpx'
     upload_album: '%kernel.project_dir%/public/album'
 
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     # default configuration for services in *this* file

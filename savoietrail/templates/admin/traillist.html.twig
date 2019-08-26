@@ -19,6 +19,7 @@
 <table class="listingProject table-striped m-auto">
     <thead class="thead">
       <tr class="border">
+        <th class="text-center">Action</th>
         <th class="text-center">Nom</th>
         <th class="text-center">Activée</th>
         <th class="text-center">Date</th>
@@ -29,6 +30,10 @@
     <tbody>
       {% for trail in trails %}
         <tr class="border">
+            <td>
+                <a href="{{ path('admintraillist_edit', {'id': trail.id})}}" class="btn btn-primary">Modifier</a>
+                <a href="{{ path('admintraillist_delete', {'id': trail.id})}}" onclick="return confirm('Êtes vous sûr?')" class="btn btn-primary">Supprimer</a>
+            </td>
           <td class="text-center">{{ trail.titre }}</td>
           <td class="text-center">
             <label class="center">
@@ -45,10 +50,12 @@
           </td>
           <td class="text-center">{{ trail.date|date() }}</td>
           </td>
-          {% endfor %}
-          <a class="text-center">
-            {# {{ user.username }} #}
+        
+         
+          <td class="text-center">
+              {{ trail.user }}
           </td>
+          {% endfor %} 
         </tr>
  
     </tbody>

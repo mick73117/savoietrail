@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\File\Exception\FileException ;
 use Symfony\Component\HttpFoundation\File\UploadedFile ;
 use App\Entity\Trails;
+use App\Entity\User;
 use App\Form\AlbumType;
 use App\Form\UploadType;
 use App\Entity\PhotoAlbum;
@@ -25,6 +26,7 @@ class UploadController extends AbstractController
         $trail = new Trails();
         $form = $this->createForm(UploadType::class, $trail);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
     
 
@@ -32,7 +34,6 @@ class UploadController extends AbstractController
 
             //if form Image is submitted upload file, concatenation path.random name.extension file, and move in /public/uplaods (target config in service.yaml)
             $file = $form->get('image')->getData();
-            dump($file);
             $fileName = '/uploads/'.md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $fileName);
             $trail->setImage($fileName);
@@ -41,6 +42,7 @@ class UploadController extends AbstractController
             $fileNameGpx = '/gpx/'.md5(uniqid()).'.'.$fileGpx->guessExtension();
             $fileGpx->move($this->getParameter('upload_gpx'), $fileNameGpx);
             $trail->setGpx($fileNameGpx);
+            $trail->setUser($user);
 
             // TODO boucle for sur ta collection $trail->getAlbum()  
            $fileAlbums = $form->get('album')->getData();
@@ -58,47 +60,48 @@ class UploadController extends AbstractController
         return $this->render('import/addTrail.html.twig', [
             'controller_name' => 'UploadController',
             'form' => $form->createView(),
-            'id' => $trail->getId()
+            'id' => $trail->getId(),
+            'id' => $user->getId()
         ]);
         }
 
-  /**
-     * @Route("add_trail_album/{id}", name="add_album")
-     */
-    public function albumForm(Request $request , ObjectManager $em, int $id)
-    {
-        $album = new PhotoAlbum();
+//   /**
+//      * @Route("add_trail_album/{id}", name="add_album")
+//      */
+//     public function albumForm(Request $request , ObjectManager $em, int $id)
+//     {
+//         $album = new PhotoAlbum();
                  
-        $repo = $this->getDoctrine()->getRepository(Trails::class);
+//         $repo = $this->getDoctrine()->getRepository(Trails::class);
  
-        $form = $this->createForm(AlbumType::class, $album);
-        $form->handleRequest($request);
-        $trail = $repo->findTrailById($id);
-        if($form->isSubmitted() && $form->isValid()) {
-             //if form Image is submitted upload file, concatenation path.random name.extension file, and move in /public/uplaods (target config in service.yaml)
-             $fileAlbum = $form->get('album')->getData();
-            //  dump($fileAlbum);
-            //  die;
-             $fileNameAlbum = '/album/'.uniqid().'.'.$fileAlbum->guessExtension();
-             $fileAlbum->move($this->getParameter('upload_album'), $fileNameAlbum);
-             $album->setAlbum($fileNameAlbum);
+//         $form = $this->createForm(AlbumType::class, $album);
+//         $form->handleRequest($request);
+//         $trail = $repo->findTrailById($id);
+//         if($form->isSubmitted() && $form->isValid()) {
+//              //if form Image is submitted upload file, concatenation path.random name.extension file, and move in /public/uplaods (target config in service.yaml)
+//              $fileAlbum = $form->get('album')->getData();
+//             //  dump($fileAlbum);
+//             //  die;
+//              $fileNameAlbum = '/album/'.uniqid().'.'.$fileAlbum->guessExtension();
+//              $fileAlbum->move($this->getParameter('upload_album'), $fileNameAlbum);
+//              $album->setAlbum($fileNameAlbum);
  
-             $album->setTrails($trail);
+//              $album->setTrails($trail);
  
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($album);
-             $em->flush();
+//              $em = $this->getDoctrine()->getManager();
+//              $em->persist($album);
+//              $em->flush();
  
-             return $this->redirectToRoute('mes_trails');
-        }
+//              return $this->redirectToRoute('mes_trails');
+//         }
  
-        return $this->render('import/addAlbum.html.twig', [
-            'controller_name' => 'UploadController',
-            'form' => $form->createView(),
-            'album' => $album,
-        ]);
+//         return $this->render('import/addAlbum.html.twig', [
+//             'controller_name' => 'UploadController',
+//             'form' => $form->createView(),
+//             'album' => $album,
+//         ]);
  
-    }
+    // }
 
     
     

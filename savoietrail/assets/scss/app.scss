@@ -132,6 +132,12 @@ input[type="checkbox"].switch_1{
 	margin: 5%;
   }
 
+  .mytrails {
+	display: grid;
+	grid-template-columns: repeat(5, 3fr);
+	grid-gap: 1%;
+  }
+
   .alltrails {
 	  display: inline-block;
 	//   width: 20rem;
@@ -170,6 +176,27 @@ input[type="checkbox"].switch_1{
 	margin-right: 25%;
 	padding: 1%;
 	border-color: #93b38bd6;
+	background-color: #68e14036;
   }
 
+//   .show {
+// 	margin-left: 11.2rem;
+//     position: absolute;
+//     left: 0;
+//     z-index: 1000;
+//     display: none;
+//     float: left;
+//     min-width: 10rem;
+//     padding: 0.5rem 0;
+//     margin: 0.125rem 0 0;
+//         margin-left: 0px;
+//     font-size: 1rem;
+//     color: #212529;
+//     text-align: left;
+//     list-style: none;
+//     background-color: #fff;
+//     background-clip: padding-box;
+//     border: 1px solid rgba(0, 0, 0, 0.15);
+//     border-radius: 0.25rem;
+//   }
  

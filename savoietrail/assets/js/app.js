@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-                   let iconGeo = new L.Icon({
+    let iconGeo = new L.Icon({
        iconUrl: 'images/professional.png',
        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
        iconSize: [25, 35],

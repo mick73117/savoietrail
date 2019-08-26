@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class UserListController extends AbstractController
 {
     /**
-     * @Route("/utilisateur", name="utilisateur")
+     * @Route("/utilisateur", name="user")
      */
     public function userList()
     {
@@ -29,7 +29,7 @@ class UserListController extends AbstractController
     }
 
     /**
-     * @Route("/utilisateur/{id}/update", name="utilisateur_update")
+     * @Route("/utilisateur/{id}/update", name="user_update")
      */
     public function userUpdate(Request $request, int $id) {
         $repo = $this->getDoctrine()->getRepository(User::class);
@@ -42,9 +42,41 @@ class UserListController extends AbstractController
           $em->flush();
         }
   
-        return $this->redirectToRoute('adminutilisateur');
+        return $this->redirectToRoute('adminuser');
   
       }
+
+    /**
+     * @Route("/utilisateur/{id}/modifier", name="user_edit")
+     */
+    public function userEdit(Request $request, int $id) {
+      $repo = $this->getDoctrine()->getRepository(User::class);
+      $em = $this->getDoctrine()->getManager();
+
+      if($request->isXmlHttpRequest()) {
+        $user = $repo->findUserById($id);
+        $etat = $request->request->get('etat');
+        $user->setEnabled($etat);
+        $em->flush();
+      }
+
+      return $this->redirectToRoute('adminuser');
+
+    }
+
+    /**
+     * @Route("/utilisateur/{id}/supprimer", name="user_delete")
+     */
+    public function userDelete(user $user)
+    {
+        // if ($this->isCsrfTokenValid('delete'.$trail->getId(), $request->request->get('_token'))) {
+            $entityTrails = $this->getDoctrine()->getManager();
+            $entityTrails->remove($trail);
+            $entityTrails->flush();
+        // }
+
+        return $this->redirectToRoute('adminuser');
+    }
 
 
 }

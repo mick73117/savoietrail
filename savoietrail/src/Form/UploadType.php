@@ -26,11 +26,13 @@ class UploadType extends AbstractType
                   'placeholder' => 'Mont Blanc',
                 ]
               ])   
-              ->add('image', FileType::class, [
-                'label' => "Image",
-                'block_name'   => 'file',
-
-            ])         
+              ->add('image', FileType::class, array(
+                'data_class' => null,
+                'attr' => [
+                  'label' => "Image",
+                  'block_name'   => 'file',
+              ]
+              ))         
             ->add('niveau', TextType::class, [
                 'attr' => [
                   'placeholder' => '4',
@@ -43,6 +45,7 @@ class UploadType extends AbstractType
                 ]
               ])   
             ->add('altitude_de_depart', TextType::class, [
+              'required' => false,
                 'label' => 'Altitude de départ',
                 'attr' => [
                   'placeholder' => '1200',
@@ -55,30 +58,40 @@ class UploadType extends AbstractType
                 ]
               ])   
             ->add('tempsalamontee', TextType::class, [
+              'required' => false,
                 'label' => 'Temps à la montée',
                 'attr' => [
                   'placeholder' => '120',
                 ]
               ])   
             ->add('tempsaladescente', TextType::class, [
+              'required' => false,
                 'label' => 'Temps à la descente',
                 'attr' => [
                   'placeholder' => '100',
                 ]
               ])   
             ->add('tempstotal', TextType::class, [
+              'required' => false,
                 'label' => 'Temps total',
                 'attr' => [
                   'placeholder' => '220',
                 ]
               ])   
             ->add('description')
-         
+            ->add('gpx', FileType::class, array(
+              'data_class' => null,
+              'attr' => [
+                // 'label' => "Image",
+                'block_name'   => 'file',
+            ]
+            ))   
             ->add ('album' , CollectionType::class, [
+              'label' => false,
                 'entry_type' => AlbumType::class ,
                 'allow_add' => true,
                 ])
-            ->add('gpx', FileType::class)
+   
             ->add('envoyer', SubmitType::class)
         ;
     }
