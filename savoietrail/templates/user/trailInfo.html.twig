@@ -11,7 +11,7 @@
                 <a href="{{ path('trail_edit', {'id': trails.id})}}" onclick="return confirm('Êtes vous sûr?')" class="btn btn-primary">Modifier</a>
                 <a href="{{ path('trail_delete', {'id': trails.id})}}" onclick="return confirm('Êtes vous sûr?')" class="btn btn-primary">Supprimer</a>
                 <img class="card-img-top" src="{{ trails.image }}" alt="Card image cap">
-                <div class="card-body">
+                <div class="card-body scrollbar">
                   <h5 class="card-title">{{ trails.titre }}</h5>
                   <ul>
                       <li>
@@ -64,10 +64,12 @@
                             // <span var gpx="{{ trails.gpx }}"></span>
                              var gpx = "{{ trails.gpx }}"; // URL to your GPX file or the GPX itself
                             new L.GPX(gpx, {async: true,
-                                // marker_options: {
-                                // startIconUrl: 'images/pin-icon-start.png',
-                                // endIconUrl: 'images/pin-icon-end.png'
-                                // }
+                                marker_options: {
+                                    // iconUrl: '/images/professional.png',
+                                startIconUrl: '/images/pin-icon-start.png',
+                                endIconUrl: '/images/pin-icon-end.png',
+                                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png'
+                                }
                             }).on('loaded', function(e) {
                             mymap.fitBounds(e.target.getBounds());
                             }).addTo(mymap);

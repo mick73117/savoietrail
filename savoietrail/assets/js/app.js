@@ -5,10 +5,11 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 import 'bootstrap' ;
+// import  initMap  from './initMap' ; 
+
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../scss/app.scss');
-// import { initMap } from './initMap' ; 
 
 // var map = require('./map');
 // var geo = require('./geo');
@@ -20,6 +21,8 @@ require('../scss/app.scss');
 // $(document).ready(function() {
 //     $('[data-toggle="popover"]').popover();
 // });
+
+// window.onload = initMap;
 
     
 
@@ -35,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     let iconGeo = new L.Icon({
-       iconUrl: 'images/professional.png',
+       iconUrl: '/images/professional.png',
        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
        iconSize: [25, 35],
        iconAnchor: [12, 41],
@@ -59,6 +62,54 @@ document.addEventListener("DOMContentLoaded", function () {
          }
      }
 
+
+
+
+    //  document.addEventListener("DOMContentLoaded", function () {
+    //     "use strict";
+       
+    //     var button = document.querySelector("button.itinerary");
+    //     button.addEventListener("click", function () {
+    //         itinerary();
+    //     });
+    //   });
+
+
+
+    
+     // itinéraire
+// let routeLayer, dir;
+
+// function itinerary() {
+// dir = MQ.routing.directions();
+
+// routeLayer = MQ.routing.routeLayer({
+// directions: dir,
+// fitBounds: true,
+// ribbonOptions: {
+//   draggable: false,
+//   ribbonDisplay: { color: '#5882FA', opacity: 0.7 },
+//   widths: [ 10, 15, 10, 15, 10, 13, 10, 12, 10, 11, 10, 11, 10, 12, 10, 14, 10 ]
+// },
+
+// altRibbonOptions: {
+//   show: true,
+//   ribbonDisplay: { color: '#F78181', opacity: 0.7},
+//   hoverDisplay: { color: 'red', opacity: 0.6 }
+// }
+// });
+
+// dir.route({
+// maxRoutes: 5,
+// timeOverage: 25,
+// locations: [
+//   'chambery',
+//   ' St Alban de Montbel'
+// ]
+// });
+
+// mymap.addLayer(routeLayer);
+// }
 
 
 

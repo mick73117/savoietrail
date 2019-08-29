@@ -8,6 +8,8 @@ use App\Form\UploadType;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 
   
@@ -35,11 +37,29 @@ class MyTrailsController extends AbstractController
     /**
      * @Route("/", name="mes_trails")
      */
-    public function index()
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(Trails::class);
         $user = $this->getUser();
         $trails = $repo->findBy(["user" => $user]);
+
+                    //   // Retrieve the entity manager of Doctrine
+                    //   $em = $this->getDoctrine()->getManager();
+                    //   // Get some repository of data, in our case we have an Appointments entity
+                    //   $trailsRepository = $em->getRepository(Trails::class);
+                    //   // Find all the data on the Appointments table, filter your query as you need
+                    //   $allotrailsQuery = $trailsRepository->createQueryBuilder('p')
+                    //       ->getQuery();
+                    //   // Paginate the results of the query
+                    //   $trails = $paginator->paginate(
+                    //       // Doctrine Query, not results
+                    //       $allotrailsQuery,
+                    //       // Define the page parameter
+                    //       $request->query->getInt('page', 1),
+                    //       // Items per page
+                    //       5
+                    //   );
+
         return $this->render('partials/navtabs.html.twig', [
             'controller_name' => 'MyTrailsController',
             'trails' => $trails,

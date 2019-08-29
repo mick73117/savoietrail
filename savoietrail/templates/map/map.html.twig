@@ -5,16 +5,28 @@
 {% block body %}
 <div class="container">
     <button id="geolocalisation" type="button" class="geolocation btn btn-outline-success my-2 my-sm-2">
-        <img class="geo" src='images/professional.png' />Géolocalisation
+        <img class="geo" src='/images/professional.png' />Géolocalisation
     </button>
+    <button id="itinerary" type="button" class="button btn btn-outline-success my-2 my-sm-2" onclick="itinerary()">
+      <img class="geo" src='/images/playgrounds.png' />Itinéraire</button>
 </div>
+<h2>Points de Vue</h2>
+          <ul>
+            <li><button type="button" class="button btn" onclick="affiche()"><img
+                  src='/images/photography.png' />Vue d'Aiguebelette</button></li>
+            <li><button type="button" class="button btn" onclick="afficheChambery()"><img
+                  src='/images/photography.png' />Vue Chambéry</button></li>
+                  <li><button id="effacement" type="button" class="button btn btn-primary ml-4" onclick="clearMap()"><img
+                    src='' />Effacer carte</button></li>
+            </ul>
 <div id="mapid"></div>
 
 <div class="container">
     <script>
-        var map = L.map('mapid').setView([45.589175, 5.911509], 11);   
+     
+        var mymap = L.map('mapid').setView([45.589175, 5.911509], 11);   
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
-        { attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a> ', maxZoom: 18, id: 'mapbox.streets', accessToken: 'pk.eyJ1IjoiZXZlLWFubmUiLCJhIjoiY2p1ZHVpOTMzMHN2bzQzcGQ0eHZrOHRncCJ9.EdHJjpp-Wo5KimYiNPyjaA' }).addTo(map);
+        { attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a> ', maxZoom: 18, id: 'mapbox.streets', accessToken: 'pk.eyJ1IjoiZXZlLWFubmUiLCJhIjoiY2p1ZHVpOTMzMHN2bzQzcGQ0eHZrOHRncCJ9.EdHJjpp-Wo5KimYiNPyjaA' }).addTo(mymap);
     
         let iconVue = new L.Icon({
     iconUrl: 'Templatic-map-icons/photography.png',
@@ -30,12 +42,6 @@
 //   map.fitBounds(e.target.getBounds());
 // }).addTo(map);
 
-
-
-
-
-
-
   
                             let coordinate =[[45.593924, 5.727414], [45.504404, 5.701581], [45.616275, 5.803802], [45.628911, 5.796723], [45.659763, 5.821366], [45.681867, 5.825781], [45.728854, 5.786568], [45.550915, 5.784484], [45.632592, 5.688373]];
 let title = ["Belvédère des Chenevières", "Point de vue de Saint Albin de Vaulserre", "Itinéraires Raquettes sur le Mont de l'Epine", "Table d'orientation de la Vierge de Vacheresse", "Table d'orientation du Relais du Chat", "Belvédère de la Source", "Belvédère de la Chapelle St Romain à Jongieux", "Belvèdère de St-Alban-de-Montbel sur le Lac d'Aiguebelette", "Belvédère du Site des Fils"];
@@ -50,12 +56,9 @@ function affiche() {
     marker.bindPopup(title[i]+'<img src='+src[i]+' height="100px"/></br>' + desc[i]+ '<a href='+href[i]+'title="Google">En savoir plus</a>');
     markerClusters.addLayer( marker );
   }
-  map.addLayer( markerClusters );
+  mymap.addLayer( markerClusters );
 }
-affiche();
-
-
-
+// affiche();
 let coordinateChambery =[[45.775480, 5.872626], [45.555196, 5.800515], [45.918186, 6.870457], [46.162638, 6.189288], [45.922424, 6.875253], [45.688100, 6.624178], [45.985245, 6.901797], [45.54870, 6.74771], [45.1287730, 6.3375660]];
 let titleChambery = ["Belvédère de la Chambotte : paradis avec vue", "Le lac d’Aiguebelette", "Téléphérique de l'Aiguille du Midi : la montagne à vos pieds", "Téléphérique du Salève : la magie des hauteurs", "La mer de glace", "Le barrage de Roselend", "Le lac des Chéserys", "Le col de la Forclaz", "Les Aiguilles d'Arves"];
 let srcChambery = ["https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/decouvrir/en-douceur/panorama-sur-le-lac-du-bourget-landing/13105-6-fre-FR/Panorama-sur-le-lac-du-Bourget-landing_format_115x80.jpg", "https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/visites-et-decouvertes/nature/lac-d-aiguebelette-vue-depuis-le-decollage-parapente/434933-1-fre-FR/Lac-d-Aiguebelette-vue-depuis-le-decollage-parapente_format_115x80.jpg", "https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/visites-et-decouvertes/nature/aiguille-du-midi-and-the-mont-blanc/903713-1-fre-FR/Aiguille-du-midi-and-the-Mont-Blanc_format_115x80.jpg", "https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/visites-et-decouvertes/a-visiter/telepherique-du-saleve/223174-1-fre-FR/Telepherique-du-Saleve_format_115x80.jpg", "https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/visites-et-decouvertes/nature/vue-sur-la-mer-de-glace-depuis-la-gare-du-montenvers-chamonix/225683-1-fre-FR/Vue-sur-la-mer-de-Glace-depuis-la-gare-du-Montenvers-Chamonix_format_115x80.jpg", "https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/visites-et-decouvertes/nature/panorama-sur-le-lac-de-roselend/153538-1-fre-FR/Panorama-sur-le-lac-de-Roselend_format_115x80.jpg", "https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/visites-et-decouvertes/nature/le-lac-des-cheserys-chamonix/16212-4-fre-FR/Le-lac-des-cheserys-Chamonix_format_115x80.jpg", "https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/decouvrir/adrenaline/parapente-au-col-de-la-forclaz-lac-d-annecy/153494-12-fre-FR/Parapente-au-col-de-la-Forclaz-Lac-d-Annecy_format_115x80.jpg", "https://www.savoie-mont-blanc.com/var/smb/storage/images/media/images/visites-et-decouvertes/nature/les-aiguilles-d-arves-depuis-le-lac-guichard/60681-1-fre-FR/Les-Aiguilles-d-Arves-depuis-le-lac-Guichard_format_115x80.jpg"];
@@ -69,9 +72,48 @@ let marker = L.marker(coordinateChambery[i], {icon: iconVue});
 marker.bindPopup(titleChambery[i]+'</br>'+'<img src='+srcChambery[i]+' height="100px"/></br>' + descChambery[i]+ '<a href='+hrefChambery[i]+'title="Google">En savoir plus</a>');
 markerClusters.addLayer( marker );
 }
-      map.addLayer( markerClusters );
+      mymap.addLayer( markerClusters );
     }
-    afficheChambery();
+    // afficheChambery();
+
+// itinéraire
+let routeLayer, dir;
+
+function itinerary() {
+dir = MQ.routing.directions();
+
+routeLayer = MQ.routing.routeLayer({
+directions: dir,
+fitBounds: true,
+ribbonOptions: {
+  draggable: false,
+  ribbonDisplay: { color: '#5882FA', opacity: 0.7 },
+  widths: [ 10, 15, 10, 15, 10, 13, 10, 12, 10, 11, 10, 11, 10, 12, 10, 14, 10 ]
+},
+
+altRibbonOptions: {
+  show: true,
+  ribbonDisplay: { color: '#F78181', opacity: 0.7},
+  hoverDisplay: { color: 'red', opacity: 0.6 }
+}
+});
+
+dir.route({
+maxRoutes: 5,
+timeOverage: 25,
+locations: [
+  'chambery',
+  ' St Alban de Montbel'
+]
+});
+
+mymap.addLayer(routeLayer);
+}
+
+function clearMap() {
+    location.reload();
+  }
+    
 
     </script>
 </div>

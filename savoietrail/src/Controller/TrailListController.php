@@ -8,6 +8,7 @@ use App\Form\UploadType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 
 
     /**
@@ -18,16 +19,31 @@ class TrailListController extends AbstractController
     /**
      * @Route("/traillist", name="traillist")
      */
-    public function trailList()
+    public function trailList(Request $request, PaginatorInterface $paginator)
     {
-      $repoUser = $this->getDoctrine()->getRepository(User::class);
-      $users = $repoUser->findAll();
-      // $users = $this->getUser();
-      // dump($users);die;
+        $repoUser = $this->getDoctrine()->getRepository(User::class);
+        $users = $repoUser->findAll();
 
-      
         $repo = $this->getDoctrine()->getRepository(Trails::class);
         $trails = $repo->findAll();
+
+               // Retrieve the entity manager of Doctrine
+               $em = $this->getDoctrine()->getManager();
+               // Get some repository of data, in our case we have an Appointments entity
+               $trailsRepository = $em->getRepository(Trails::class);
+               // Find all the data on the Appointments table, filter your query as you need
+               $allotrailsQuery = $trailsRepository->createQueryBuilder('p')
+                   ->getQuery();
+               // Paginate the results of the query
+               $trails = $paginator->paginate(
+                   // Doctrine Query, not results
+                   $allotrailsQuery,
+                   // Define the page parameter
+                   $request->query->getInt('page', 1),
+                   // Items per page
+                   10
+               );
+
         return $this->render('admin/traillist.html.twig', [
             'controller_name' => 'TrailListController',
             'trails' => $trails,

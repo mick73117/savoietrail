@@ -1,14 +1,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
-<h2 class="text-center">Compte<img src="/images/user.png" class="icone ml-5" alt="icone"/></h2>
-<div class="container mt-5">
-        <table class="table">
+<h2 class="text-center">Compte<img src="/images/backpack.png" class="icone ml-5" alt="icone"/></h2>
+   
+<div class="container mt-5 animated fadeInUpBig duration1">
+    <div class='cardLogin'>
+        <table>
           <tbody>
-            <tr class="border fos_user_user_show show">
+            <tr class="fos_user_user_show show">
                 <th>{{ 'profile.show.username'|trans }}: {{ user.username }}</th>
             </tr>
-            <tr class="border fos_user_user_show show">
+            <tr class="fos_user_user_show show">
                 <th>{{ 'profile.show.email'|trans }}: {{ user.email }}</th>
             </tr>
           </tbody>
         </table>
+        <a href="/profile/edit " class="btn btn-success">Modifier</a>
+    </div>
 </div>

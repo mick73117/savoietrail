@@ -18,7 +18,7 @@
 //       });
 //     // Geolocation
 
-//    function currentLocation(mymap) {
+//    export default function currentLocation(mymap) {
     
 //         let p = document.getElementById("geolocalisation");
 //         p.onclick = currentLocation;

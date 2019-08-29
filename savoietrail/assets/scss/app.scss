@@ -14,8 +14,8 @@ body {
     width: 100%;
 }
 
-.dropdown-toggle {
-	margin-left: 13rem;
+.login {
+	margin-right: 13rem;
 }
 
 .navbar-brand {
@@ -32,18 +32,56 @@ body {
 	height: 7rem;
 }
 
+
+
+//navtabs
+.imgBan {
+	width: 69.5rem;
+	border-radius: 0% 0% 5% 5%;
+}
+
+.navban {
+    background-image: url("../../public/images/bann.png");
+    border: solid, 1px;
+	border-radius:0% 0% 5% 5%;
+	background-repeat: no-repeat;
+	height: 14rem;
+}
+
+.navtrails {
+	display: inline-block;
+	width: 10rem;
+	height: 11rem;
+	margin-left: 14%;
+	margin-top: 14%;
+}
+
+.navpagination {
+	margin-left: 35%
+}
+
+.navtabbackground {
+	height: 14rem;
+}
+
+.navscrollbar {
+	overflow-x:scroll;
+	height: 11rem;
+  }
+
+
  // Leaflet
 #mapid { 
-    margin-top: 5%;
+    margin-top: 10%;
     margin: auto;
     height: 30rem; 
     width: 69rem;
 }
 
 #mapidinfo { 
-    margin-top: 75%;
+    margin-top: 5%;
     // margin: auto;
-    height: 20rem; 
+    height: 25rem; 
     width: 49rem;
 }
  
@@ -51,11 +89,7 @@ body {
     height: 1.5rem;
 }
 
-.test {
-    background-color: rgba(44, 42, 42, 0.767);
-    border: solid, 1px;
-    border-radius:0% 0% 5% 5%;
-}
+
 
 
 //checkbox_Users
@@ -149,6 +183,10 @@ input[type="checkbox"].switch_1{
 	  border-top-right-radius: calc(0.25rem - 1px);
 }
 
+.title {
+	margin: auto;
+}
+
 //   #card-img-top:hover {
 // 	  width: 30rem;
 // 	  z-index: 5;
@@ -159,9 +197,9 @@ input[type="checkbox"].switch_1{
 	margin-right: 30%;
   }
 
-  .card-body {
-	  background-color: #5ccd808a;
-  }
+//   .card-body {
+// 	  background-color: #5ccd808a;
+//   }
 
   #link {
 	  color: black;
@@ -200,3 +238,10 @@ input[type="checkbox"].switch_1{
 //     border-radius: 0.25rem;
 //   }
  
+
+
+.scrollbar {
+	overflow-x:scroll;
+	height: 25rem;
+  }
+

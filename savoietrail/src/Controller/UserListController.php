@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
 
     /**
@@ -16,11 +17,27 @@ class UserListController extends AbstractController
     /**
      * @Route("/utilisateur", name="user")
      */
-    public function userList()
+    public function userList(Request $request, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(User::class);
-
         $users = $repo->findAll();
+
+               // Retrieve the entity manager of Doctrine
+               $em = $this->getDoctrine()->getManager();
+               // Get some repository of data, in our case we have an Appointments entity
+               $usersRepository = $em->getRepository(User::class);
+               // Find all the data on the Appointments table, filter your query as you need
+               $allousersQuery = $usersRepository->createQueryBuilder('p')
+                   ->getQuery();
+               // Paginate the results of the query
+               $users = $paginator->paginate(
+                   // Doctrine Query, not results
+                   $allousersQuery,
+                   // Define the page parameter
+                   $request->query->getInt('page', 1),
+                   // Items per page
+                   10
+               );
 
         return $this->render('admin/userlist.html.twig', [
             'controller_name' => 'UserListController',

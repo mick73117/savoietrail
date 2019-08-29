@@ -7,7 +7,6 @@
 
   <div class="container mb-4 mr-2">
       <div class="row">
-        <a class="btn btn-outline-success col" href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
         <form class="form-inline my-2 my-lg-0 col">
           <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
@@ -28,7 +27,7 @@
     </thead>
 
     <tbody>
-      {% for trail in trails %}
+      {% for trail in trails|reverse %}
         <tr class="border">
             <td>
                 <a href="{{ path('admintraillist_edit', {'id': trail.id})}}" class="btn btn-primary">Modifier</a>
@@ -60,6 +59,9 @@
  
     </tbody>
   </table>
+</div>
+<div class='navigation'>
+    {{ knp_pagination_render(trails) }}
 </div>
 {% endblock %}
 
