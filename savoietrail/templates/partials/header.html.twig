@@ -24,12 +24,12 @@
       {% endif %}
       {% elseif not app.user %}
       <li class="nav-item">
-          <a class="navbar-brand" href="{{ path('fos_user_security_login') }}">Ajouter Trail</a>
+          <a class="navbar-brand text-success" href="{{ path('fos_user_security_login') }}">Ajouter Trail</a>
         </li>
-        <form class="form-inline my-2 my-lg-0">
+        <!-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0 login" type="submit">Search</button>
-          </form>
+          </form> -->
       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">Connexion<img src="/images/backpack.png" class="icone ml-2" alt="icone"/></a>
@@ -42,10 +42,10 @@
       {% else %} 
       {% endif %}
       {% if app.user %}
-      <form class="form-inline my-2 my-lg-0">
+      <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form> -->
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-success" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">{{ app.user.username }}<img src="/images/backpack.png" class="icone ml-2" alt="icone"/></a>

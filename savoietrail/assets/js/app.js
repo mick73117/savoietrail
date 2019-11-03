@@ -24,6 +24,19 @@ require('../scss/app.scss');
 
 // window.onload = initMap;
 
+
+ function test() {
+    
+    var trackpoints = "{{ trails.gpx }}".contentDocument.getElementsByTagName('wpt');
+    
+    for (trackpoint of trackpoints) {
+        console.log(trackpoint.getAttribute('lat'));
+        console.log(trackpoint.getAttribute('lon'));
+    }    
+}
+
+console.log(test);
+
     
 
 

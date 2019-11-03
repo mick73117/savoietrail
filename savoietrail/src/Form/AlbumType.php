@@ -16,6 +16,7 @@ class AlbumType extends AbstractType
     {
         $builder
             ->add('album', FileType::class, [
+                'required' => false,
                 'attr' => [
                   'placeholder' => 'Choose File',
                 ]

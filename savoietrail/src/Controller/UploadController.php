@@ -22,44 +22,71 @@ class UploadController extends AbstractController
      */
     public function uploadTrail(Request $request , ObjectManager $em)
     {
+        //crée un objet de PhotoAlbum et initialise des données
         $album = new PhotoAlbum();
+        //crée un objet de Trails et initialise des données
         $trail = new Trails();
+        // cration du formulaire
         $form = $this->createForm(UploadType::class, $trail);
         $form->handleRequest($request);
+        // récupération de l'utilisateur connecté
         $user = $this->getUser();
+        //le formulaire GPX est soumis
+        $fileGpx = $form->get('gpx')->getData();
+        //le formulaire Image est soumis
+        $file = $form->get('image')->getData();
 
-    
 
+        // si le formulaire est soumis et valide alors:
         if($form->isSubmitted() && $form->isValid()) {
+            // if($file == NULL || $fileGpx == NULL) {
+            //     return $this->$form->isDisabled();
+            // }
 
-            //if form Image is submitted upload file, concatenation path.random name.extension file, and move in /public/uplaods (target config in service.yaml)
-            $file = $form->get('image')->getData();
+
+
+            //la concaténation du fichier path.random name.extension 
             $fileName = '/uploads/'.md5(uniqid()).'.'.$file->guessExtension();
+            //le déplacement dans / public / images (configuration cible dans service.yaml)
             $file->move($this->getParameter('upload_directory'), $fileName);
+            //envoi des données de image dans trails
             $trail->setImage($fileName);
 
-            $fileGpx = $form->get('gpx')->getData();
-            $fileNameGpx = '/gpx/'.md5(uniqid()).'.'.$fileGpx->guessExtension();
-            $fileGpx->move($this->getParameter('upload_gpx'), $fileNameGpx);
-            $trail->setGpx($fileNameGpx);
-            $trail->setUser($user);
 
-            // TODO boucle for sur ta collection $trail->getAlbum()  
+            //la concaténation du fichier path.random name.extension 
+            $fileNameGpx = '/gpx/'.md5(uniqid()).'.'.$fileGpx->guessExtension();
+            //le déplacement dans / public / gpx (configuration cible dans service.yaml)
+            $fileGpx->move($this->getParameter('upload_gpx'), $fileNameGpx);
+            //envoi des données de gpx dans trail
+            $trail->setGpx($fileNameGpx);
+            //envoi l'utilisateur connecté dans trail
+            $trail->setUser($user);
+            
+            //le formulaire album est soumis
            $fileAlbums = $form->get('album')->getData();
+           // boucle foreach sur la collection Album
            foreach ($fileAlbums as $fileAlbum) {
+               //envoi des données d'album dans trail
                $fileAlbum->setTrails($trail);      
-             //$trail->getAlbum($fileAlbum);
            }
 
+           // récupérer l'EntityManager via $this->getDoctrine()
             $em = $this->getDoctrine()->getManager();
+            //indique à Doctrine que je souhaite enregistrer
             $em->persist($trail);
+            // exécute les requêtes
             $em->flush();
+
+            return $this->redirectToRoute('trails');
 
         }
 
+        //lier le controller au template ou l'on souhaite le rendu
         return $this->render('import/addTrail.html.twig', [
             'controller_name' => 'UploadController',
+            // Méthode pour construire un objet avec la représentation visuelle du formulaire
             'form' => $form->createView(),
+            // définition du contexte en récupérant les id du trail et de l'utilisateur pour lier les données
             'id' => $trail->getId(),
             'id' => $user->getId()
         ]);

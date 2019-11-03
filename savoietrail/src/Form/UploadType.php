@@ -22,23 +22,27 @@ class UploadType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, [
+              'required' => false,
                 'attr' => [
                   'placeholder' => 'Mont Blanc',
                 ]
               ])   
               ->add('image', FileType::class, array(
                 'data_class' => null,
+                'required' => false,
                 'attr' => [
                   'label' => "Image",
                   'block_name'   => 'file',
               ]
               ))         
             ->add('niveau', TextType::class, [
+              'required' => false,
                 'attr' => [
                   'placeholder' => '4',
                 ]
               ])   
             ->add('denivele', TextType::class, [
+              'required' => false,
                 'label' => 'Dénivelée',
                 'attr' => [
                   'placeholder' => '100',
@@ -52,6 +56,7 @@ class UploadType extends AbstractType
                 ]
               ])   
             ->add('altitudedarrivee', TextType::class, [
+              'required' => false,
                 'label' => 'Altitude d\'arrivée',
                 'attr' => [
                   'placeholder' => '2300',
@@ -81,6 +86,7 @@ class UploadType extends AbstractType
             ->add('description')
             ->add('gpx', FileType::class, array(
               'data_class' => null,
+              'required' => false,
               'attr' => [
                 // 'label' => "Image",
                 'block_name'   => 'file',

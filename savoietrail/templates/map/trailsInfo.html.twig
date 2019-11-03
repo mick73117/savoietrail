@@ -59,15 +59,16 @@
                     <div class="container">
                 
                        <script>
+                        //Ici, nous créons une carte dans le div 'mapidinfo'
                             var mymap = L.map('mapidinfo').setView([45.589175, 5.911509], 8);   
                             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
-                            { attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a> ', maxZoom: 18, id: 'mapbox.streets', accessToken: 'pk.eyJ1IjoiZXZlLWFubmUiLCJhIjoiY2p1ZHVpOTMzMHN2bzQzcGQ0eHZrOHRncCJ9.EdHJjpp-Wo5KimYiNPyjaA' }).addTo(mymap);
-
-                            // <span var gpx="{{ trails.gpx }}"></span>
-                             var gpx = "{{ trails.gpx }}"; // URL to your GPX file or the GPX itself
+                            { attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a> ',
+                             maxZoom: 18, id: 'mapbox.streets', accessToken: 'pk.eyJ1IjoiZXZlLWFubmUiLCJhIjoiY2p1ZHVpOTMzMHN2bzQzcGQ0eHZrOHRncCJ9.EdHJjpp-Wo5KimYiNPyjaA' 
+                            }).addTo(mymap);
+                            // URL vers votre fichier GPX ou le GPX lui-même
+                             var gpx = "{{ trails.gpx }}"; 
                             new L.GPX(gpx, {async: true,
                                 marker_options: {
-                                    // iconUrl: '/images/professional.png',
                                 startIconUrl: '/images/pin-icon-start.png',
                                 endIconUrl: '/images/pin-icon-end.png',
                                 shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png'

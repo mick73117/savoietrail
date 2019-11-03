@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use PDO;
+use App\Entity\Trails;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
@@ -13,10 +16,14 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(Request $request)
     {
+    $repo = $this->getDoctrine()->getRepository(Trails::class);
+    $trails = $repo->findAll();
+    
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'trails' => $trails,
         ]);
     }
 
