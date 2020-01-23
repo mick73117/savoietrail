@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TrailsUser index{% endblock %}
+
+{% block body %}
+    <h1>TrailsUser index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Favori</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trails_user in trails_users %}
+            <tr>
+                <td>{{ trails_user.id }}</td>
+                <td>{{ trails_user.favori ? 'Yes' : 'No' }}</td>
+                <td>{{ trails_user.note }}</td>
+                <td>
+                    <a href="{{ path('trails_user_show', {'id': trails_user.id}) }}">show</a>
+                    <a href="{{ path('trails_user_edit', {'id': trails_user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('trails_user_new') }}">Create new</a>
+{% endblock %}

@@ -46,7 +46,7 @@ class TrailsUser
         return $this->favori;
     }
 
-    public function setFavori(?bool $favori): self
+    public function setFavori(): ?int
     {
         $this->favori = $favori;
 

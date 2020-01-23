@@ -5,8 +5,9 @@
 {% block body %}
 <div class="trails">
   
-{% for trail in trails|reverse %}
-<div class="container">
+{% for trail in pagination %}
+{% if trail.enabled == TRUE %}
+<div class="container mt-4">
     {# <div class="switch_box box_1">
         <input type="checkbox" class="switch_1" name="test" value="1" checked="checked">
       </div> #}
@@ -21,27 +22,36 @@
       {% endif %} #}
     <a href="{{ path('trails_info', {'id': trail.id})}}">
       <div class="card alltrails">
-          <td class="text-center">
-              <label class="center">
-
-              </label>
-            </td>
+        <div class="scroller">
             <span id="link">
               <img id="card-img-top" src="{{ trail.image}}" alt="Card image cap">
               <div class="card-body">
-              <h5 class="card-title">{{ trail.titre }}</h5>
+              <h6 class="card-title">{{ trail.titre }}</h6>
+              <p>Niveau : {{ trail.niveau }}</p>
             {# <p class="card-text">{{ trail.description}}</p> #}
-            <a href="{{ path('favoris', {'id': trail.id})}}" class="btn btn-primary">Ajouter aux Favoris</a>
+            {# <a href="{{ path('favoris', {id: trail.id})}}" class="btn btn-primary">Ajouter aux Favoris</a> #}
           </span>
+        </div>
           </div>
       </div>
     </a>
 </div>
+{% endif %}
 {% endfor %}
+
 </div>
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
 <div class='navigation'>
-    {{ knp_pagination_render(trails) }}
+    {{ knp_pagination_render(pagination) }}
 </div>
+</div>
+<div class='col'></div>
+</div>
+
+<div class="container"><hr></div>
 {% endblock %}
 
 {% block javascripts %}

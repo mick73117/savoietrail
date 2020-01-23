@@ -4,21 +4,32 @@
 
 {% block body %}
 <div class="container">
-    <button id="geolocalisation" type="button" class="geolocation btn btn-outline-success my-2 my-sm-2">
-        <img class="geo" src='/images/professional.png' />Géolocalisation
-    </button>
-    <button id="itinerary" type="button" class="button btn btn-outline-success my-2 my-sm-2" onclick="itinerary()">
-      <img class="geo" src='/images/playgrounds.png' />Itinéraire</button>
+  <ul class="nav nav-pills">
+    <li class="mr-4">
+        <button id="geolocalisation" type="button" class="geolocation btn btn-outline-success my-2 my-sm-2">
+            <img class="geo" src='/images/professional.png' />Géolocalisation
+        </button>
+    </li>
+    <li class="mr-4">
+        <button id="itinerary" type="button" class="button btn btn-outline-success my-2 my-sm-2" onclick="itinerary()">
+            <img class="geo" src='/images/playgrounds.png' />Itinéraire</button>
+    </li>
+    <li class="mr-4">
+        <button type="button" class="button btn" onclick="affiche()"><img
+          src='/images/photography.png' />Vue d'Aiguebelette</button>
+    </li>
+    <li class="mr-4">
+        <button type="button" class="button btn" onclick="afficheChambery()"><img
+          src='/images/photography.png' />Vue Chambéry</button>
+    </li>
+    <li class="mr-4">
+        <button id="effacement" type="button" class="button btn btn-primary my-2 my-sm-2" onclick="clearMap()"><img
+          src='' />Effacer carte</button>
+    </li>
+  </ul>
+
 </div>
-<h2>Points de Vue</h2>
-          <ul>
-            <li><button type="button" class="button btn" onclick="affiche()"><img
-                  src='/images/photography.png' />Vue d'Aiguebelette</button></li>
-            <li><button type="button" class="button btn" onclick="afficheChambery()"><img
-                  src='/images/photography.png' />Vue Chambéry</button></li>
-                  <li><button id="effacement" type="button" class="button btn btn-primary ml-4" onclick="clearMap()"><img
-                    src='' />Effacer carte</button></li>
-            </ul>
+
 <div id="mapid"></div>
 
 <div class="container">

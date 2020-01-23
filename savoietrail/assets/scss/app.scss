@@ -1,16 +1,25 @@
 @import "~bootstrap/scss/bootstrap" ;
 
 body {
-	// background-color: rgba(44, 42, 42, 0.767);
-	text-transform: uppercase;
+	background-image: url("/images/people-2591874_1920.jpg");
+	background-repeat: no-repeat;
 }
 
 .icone {
     width: 2rem;
 }
 
-// Navbar
+h5 {
+	color: white !important;
+}
 
+// Navbar
+.margin {
+	margin-left: 30rem;
+}
+.marginLogin {
+	margin-left: 9rem;
+}
 .navbar {
     width: 100%;
 }
@@ -77,6 +86,18 @@ body {
     margin: auto;
     height: 30rem; 
     width: 69rem;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff63 !important;
+	background-clip: border-box;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
 }
 
 #mapidinfo { 
@@ -161,11 +182,37 @@ input[type="checkbox"].switch_1{
   // trails
   .trails {
 	display: grid;
-	grid-template-columns: repeat(5, 3fr);
+	grid-template-columns: repeat(4, 3fr);
 	grid-gap: 1%;
 	// grid-auto-rows: minmax(100px, auto);
-	margin: 5%;
+	margin: 2%;
   }
+
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff !important;
+	background-color:#28a745 !important;
+	border-color:#28a745 !important;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #28a745 !important;
+	background-color:#fff;
+	border: 1px solid#dee2e6;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #28a745 !important;
+	text-decoration: none;
+	background-color:#e9ecef;
+	border-color:#dee2e6;
+}
 
   .mytrails {
 	display: grid;
@@ -179,7 +226,8 @@ input[type="checkbox"].switch_1{
 	//   height: 20rem;
   }
   #card-img-top {
-  	  width: 100%;
+	  width: 17rem;
+	  max-height: 13rem;
 	  border-top-left-radius: calc(0.25rem - 1px);
 	  border-top-right-radius: calc(0.25rem - 1px);
 }
@@ -246,3 +294,7 @@ input[type="checkbox"].switch_1{
 	height: 25rem;
   }
 
+.scroller {
+	height: 17rem;
+	overflow-y: scroll;
+  }

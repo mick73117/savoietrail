@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TrailsUser{% endblock %}
+
+{% block body %}
+    <h1>Create new TrailsUser</h1>
+
+    {{ include('trails_user/_form.html.twig') }}
+
+    <a href="{{ path('trails_user_index') }}">back to list</a>
+{% endblock %}

@@ -22,28 +22,16 @@ class TrailsController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Trails::class);
         $trails = $repo->findAll();
 
-
-        // Retrieve the entity manager of Doctrine
-        $em = $this->getDoctrine()->getManager();
-        // Get some repository of data, in our case we have an Appointments entity
-        $trailsRepository = $em->getRepository(Trails::class);
-        // Find all the data on the Appointments table, filter your query as you need
-        $allotrailsQuery = $trailsRepository->createQueryBuilder('p')
-            ->getQuery();
-        // Paginate the results of the query
-        $trails = $paginator->paginate(
-            // Doctrine Query, not results
-            $allotrailsQuery,
-            // Define the page parameter
-            $request->query->getInt('page', 1),
-            // Items per page
-            10
-        );
-    
+        $trailsR = array_reverse($trails, true);
+        $pagination = $paginator->paginate( $trailsR,
+        $request->query->getInt('page', 1),
+        9
+    );
+ 
 
         return $this->render('map/trails.html.twig', [
             'controller_name' => 'TrailController',
-            'trails' => $trails,
+            'pagination' => $pagination,
         ]);
     }
     
@@ -52,11 +40,13 @@ class TrailsController extends AbstractController
      */
     public function somewhere($id)
     {
-        $entityAlbum = $this->getDoctrine()->getRepository(PhotoAlbum::class);
-        $albums = $entityAlbum->findAll();
+
         $repo = $this->getDoctrine()->getRepository(Trails::class);
         $trails = $repo->findTrailById($id);
-        // $trails = $repo->findAll();
+
+        $entityAlbum = $this->getDoctrine()->getRepository(PhotoAlbum::class);
+        
+        $albums = $entityAlbum->findBy(['trails' => $trails]);
         return $this->render('map/trailsinfo.html.twig', [
             'controller_name' => 'TrailController',
             'trails' => $trails,

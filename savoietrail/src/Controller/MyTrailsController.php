@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Trails;
+use App\Entity\PhotoAlbum;
 use App\Entity\TrailsUser;
 use App\Form\UploadType;
 use Symfony\Component\DomCrawler\Crawler;
@@ -45,34 +46,41 @@ class MyTrailsController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Trails::class);
         $user = $this->getUser();
         $trails = $repo->findBy(["user" => $user]);
+
+
+
         return $this->render('partials/navtabs.html.twig', [
             'controller_name' => 'MyTrailsController',
             'trails' => $trails,
             // 'id' => $user->getId()
         ]);
     }
+ 
 
-    /**
-     * @Route("/{id}/favoris", name="favoris")
-     */
-    public function trailUpdate(Request $request, int $id) {
-        $repo = $this->getDoctrine()->getRepository(Trails::class);
-        // $repo2 = $this->getDoctrine()->getRepository(TrailsUser::class);
-
-        $trails = $repo->findTrailById($id);
-        $favori = $repo->setFavori($id);
-  
-  
-     
-          $idFavori = $repo->findBy(['id' => $id]);
-        //   $idFavori = $trails->getId($id);
-          $favori->setFavori($idFavori);
-          $em->flush();
+    // /**
+    //  * @Route("/{id}/favoris", name="favoris")
+    //  */
+    // public function trailUpdate(Request $request, int $id) {
+    //     $repo = $this->getDoctrine()->getRepository(Trails::class);
+    //     $trails = $repo->findTrailById($id);
+    //     $repo2 = $this->getDoctrine()->getRepository(TrailsUser::class);
+    //     $favori = $repo2->setFavori($id);
+    //     $entityManager = $this->getDoctrine()->getManager();
+    //     // $trailId = $this->getTrails();
+    //     // $favori = $repo2->fingAll();
+    //     // $idFavori = $repo2->findById($id);
+    //     // $idTrail = $repo->find($id);
+    //     // $id = $_REQUEST['id'];
+    // //    $idTrail = $repo->findBy(['id' => $id]);
+    // //    var_dump($id);die;
+    //       $id = $trails->getId();
+    //       $em2->setFavori($id);
+    //       $em2->flush();
         
   
-        return $this->redirectToRoute('trail');
+    //     return $this->redirectToRoute('trail');
   
-      }
+    //   }
 
     /**
      * @Route("/info/{id}/", name="mes_trails_info")
@@ -81,9 +89,14 @@ class MyTrailsController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Trails::class);
         $trails = $repo->findTrailById($id);
+
+        $entityAlbum = $this->getDoctrine()->getRepository(PhotoAlbum::class);
+        $albums = $entityAlbum->findBy(['trails' => $trails]);
+        
         return $this->render('user/trailinfo.html.twig', [
             'controller_name' => 'MyTrailController',
             'trails' => $trails,
+            'albums' => $albums,
         ]);
     }
 

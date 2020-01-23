@@ -113,7 +113,7 @@ class Trails
         $this->trailsUsers = new ArrayCollection();
         $this->trailsComments = new ArrayCollection();
         $this->setDate(new \DateTime());
-        $this->setenabled(1);
+        $this->setenabled(0);
         $this->album = new ArrayCollection();
     }
 

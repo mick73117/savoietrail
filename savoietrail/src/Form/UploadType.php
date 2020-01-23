@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -35,52 +36,58 @@ class UploadType extends AbstractType
                   'block_name'   => 'file',
               ]
               ))         
-            ->add('niveau', TextType::class, [
+            ->add('niveau', ChoiceType::class, [
               'required' => false,
-                'attr' => [
-                  'placeholder' => '4',
-                ]
+              'choices' => [
+                '1' => 1,
+                '2' => 2,
+                '3' => 3,
+                '4' => 4,
+              ]
+                // 'attr' => [
+                //   'placeholder' => '4',
+                // ]
               ])   
             ->add('denivele', TextType::class, [
               'required' => false,
                 'label' => 'Dénivelée',
                 'attr' => [
-                  'placeholder' => '100',
+                  'placeholder' => 'Ex : 100 (unité mètre)',
                 ]
               ])   
             ->add('altitude_de_depart', TextType::class, [
               'required' => false,
                 'label' => 'Altitude de départ',
                 'attr' => [
-                  'placeholder' => '1200',
+                  'placeholder' => 'Ex : 1200 (unité mètre)',
                 ]
               ])   
             ->add('altitudedarrivee', TextType::class, [
               'required' => false,
                 'label' => 'Altitude d\'arrivée',
                 'attr' => [
-                  'placeholder' => '2300',
+                  'placeholder' => 'Ex : 2300 (unité mètre)',
                 ]
               ])   
             ->add('tempsalamontee', TextType::class, [
               'required' => false,
                 'label' => 'Temps à la montée',
                 'attr' => [
-                  'placeholder' => '120',
+                  'placeholder' => 'Ex : 120 (unité minute)',
                 ]
               ])   
             ->add('tempsaladescente', TextType::class, [
               'required' => false,
                 'label' => 'Temps à la descente',
                 'attr' => [
-                  'placeholder' => '100',
+                  'placeholder' => 'Ex : 100 (unité minute)',
                 ]
               ])   
             ->add('tempstotal', TextType::class, [
               'required' => false,
                 'label' => 'Temps total',
                 'attr' => [
-                  'placeholder' => '220',
+                  'placeholder' => 'EX : 220 (unité minute)',
                 ]
               ])   
             ->add('description')

@@ -1,36 +1,36 @@
 <div class="container-fluid">
   <nav class="navbar navbar-expand-lg">
     <ul class="nav nav-pills ">
-      <li class="nav-item active">
+      <li class="active">
         <a onclick=data() href="{{ path('home') }}"><img src="/images/goal.png" class="logo"></a>
       </li>
-      <li class="nav-item">
+      <li class="">
         <a class="navbar-brand text-success" href="{{ path('trails') }}">Trails</a>
       </li>
-      <li class="nav-item">
+      <li class="">
           <a class="navbar-brand text-success" href="{{ path('map') }}">Carte</a>
         </li>
       {% if app.user %}
-      <li class="nav-item">
+      <li class="">
         <a href="{{ path('add_trail') }}" class="navbar-brand text-success">Ajouter Trail</a>
       </li>
       {% if is_granted('ROLE_ADMIN') %}
-      <li class="nav-item">
+      <li class="">
         <a href="{{ path('adminuser') }}" class="navbar-brand text-success">Liste user</a>
       </li>
-      <li class="nav-item">
+      <li class="">
         <a href="{{ path('admintraillist') }}" class="navbar-brand text-success">Liste trail</a>
       </li>
       {% endif %}
       {% elseif not app.user %}
-      <li class="nav-item">
+      <li class="">
           <a class="navbar-brand text-success" href="{{ path('fos_user_security_login') }}">Ajouter Trail</a>
         </li>
         <!-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0 login" type="submit">Search</button>
           </form> -->
-      <li class="nav-item dropdown">
+      <li class="dropdown margin">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">Connexion<img src="/images/backpack.png" class="icone ml-2" alt="icone"/></a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -46,7 +46,7 @@
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form> -->
-          <li class="nav-item dropdown">
+          <li class="dropdown marginLogin">
               <a class="nav-link dropdown-toggle text-success" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">{{ app.user.username }}<img src="/images/backpack.png" class="icone ml-2" alt="icone"/></a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
